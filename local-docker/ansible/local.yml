@@ -1,0 +1,9 @@
+- name: "Update existing env. variable"
+  hosts: localhost
+  connection: local 
+  tasks:
+  - name: "provide a new env variable"
+    ansible.builtin.lineinfile:
+      path: ../terraform/variable.tf
+      regexp: 'default = \(\[\"HW_ENV_VAR=.*\"\]\)'
+      line: '    default = (["HW_ENV_VAR=fromAnsible"])'

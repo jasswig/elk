@@ -1,0 +1,13 @@
+- name: Play Web - Create env variable in hello world app
+  hosts: default
+  become: yes
+  remote_user: test
+  tasks:
+  - name: update docker container env var
+    community.docker.docker_container:
+      name: hello-world
+      recreate: yes
+      state: started
+      restart: yes
+      env:
+          HW_ENV_VAR: fromAnsible

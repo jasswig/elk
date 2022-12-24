@@ -1,0 +1,8 @@
+{
+  "attributes": {
+    "timeFieldName": "@timestamp",
+    "title": "filebeat*"
+  },
+  "id": "hello-world-index-pattern",
+  "type": "index-pattern"
+}

@@ -1,0 +1,22 @@
+filebeat.inputs:
+- type: filestream
+  id: my-filestream-id
+  paths: 
+    - /var/hw-app.log
+
+processors:
+- if:
+    regexp:
+      message: ^(172|192)
+  then:
+    - dissect:
+        tokenizer: '%{client_ip} - - [%{datetime}] "%{http.verb} %{http.url} %{http.version}" %{http.status_code|integer} -'
+        field: "message"
+        target_prefix: ""
+
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+logging.json: true
+logging.metrics.enabled: false

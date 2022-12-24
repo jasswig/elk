@@ -1,0 +1,138 @@
+version: "3.4"
+services:
+  
+  # hw-app: #docker run -it -v ${PWD}:/src -w /wip -p 5001:5000 jassi/hello-world:1.0.0 /bin/sh
+  #   container_name: hello-world
+  #   image: jassi/hello-world:1.0.0
+  #   build: 
+  #     context: ./hello-world
+  #     target: prod
+  #   volumes:
+  #   - ./hello-world/src/:/wip
+  #   ports:
+  #     - 5001:5000
+  #   networks:
+  #     - elastic
+  #   environment:
+  #     - HW_ENV_VAR=Env_Var_Jassi
+
+  hw-ansible:
+    container_name: ansible
+    image: ansible
+    tty: true
+    stdin_open: true
+    build:
+      context: ./ansible
+    volumes:
+    - ./ansible/:/wip
+    working_dir: /wip
+    expose:
+      - "22"
+    networks:
+      - elastic
+    
+
+  hw-kibana-update: 
+    container_name: kibana-update
+    image: python:3.10.8-alpine3.15
+    volumes:
+    - ./kibana:/wip
+    working_dir: /wip
+    command: >
+      sh -c
+        "pip install requests &&
+        python ./init.py"
+    networks:
+      - elastic
+    depends_on:
+      - hw-kibana
+
+  hw-filebeat: 
+    container_name: filebeat
+    user: root
+    image: docker.elastic.co/beats/filebeat:7.17.6
+    volumes:
+    - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+    - ./hello-world/src/logs/hw-app.log:/var/hw-app.log:ro
+    #command: 'filebeat setup --index-management -E output.logstash.enabled=false -E "ouput.elasticsearch.hosts=["http://es01:9200"]"'
+    networks:
+      - elastic
+    depends_on:
+      - hw-logstash
+
+  hw-logstash:
+    container_name: logstash
+    image: docker.elastic.co/logstash/logstash:7.17.6
+    volumes:
+    - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    - ./logstash/template.json:/usr/share/logstash/templates/logstash.template.json
+    #- ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+    #command: logstash -f /etc/logstash/conf.d/logstash.conf
+    ports:
+      - 5044:5044
+    networks:
+      - elastic
+    depends_on:
+      - hw-kibana
+
+  # https://www.elastic.co/guide/en/elastic-stack-get-started/7.17/get-started-docker.html
+  hw-es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es02
+      - cluster.initial_master_nodes=es01,es02
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data03:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+
+  hw-es02:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    container_name: es02
+    environment:
+      - node.name=es02
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01
+      - cluster.initial_master_nodes=es01,es02
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data04:/usr/share/elasticsearch/data
+    networks:
+      - elastic
+
+  hw-kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.6
+    container_name: kibana
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://es01:9200
+      ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200"]'
+    networks:
+      - elastic
+    depends_on:
+      - hw-es01
+volumes:
+  data03:
+    driver: local
+  data04:
+    driver: local
+networks:
+  elastic:
+    driver: bridge

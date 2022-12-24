@@ -1,0 +1,42 @@
+{
+  "attributes": {
+    "description": "",
+    "hits": 0,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[{\"meta\":{\"alias\":null,\"negate\":false,\"disabled\":false,\"type\":\"phrase\",\"key\":\"type.keyword\",\"params\":{\"query\":\"applog\"},\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index\"},\"query\":{\"match_phrase\":{\"type.keyword\":\"applog\"}},\"$state\":{\"store\":\"appState\"}}]}"
+    },
+    "optionsJSON": "{\"useMargins\":true,\"syncColors\":false,\"hidePanelTitles\":false}",
+    "panelsJSON": "[{\"version\":\"7.17.6\",\"type\":\"lens\",\"gridData\":{\"x\":0,\"y\":0,\"w\":13,\"h\":15,\"i\":\"25e59ec8-eb7e-4fb7-beec-31eda6b8261c\"},\"panelIndex\":\"25e59ec8-eb7e-4fb7-beec-31eda6b8261c\",\"embeddableConfig\":{\"attributes\":{\"title\":\"\",\"visualizationType\":\"lnsPie\",\"type\":\"lens\",\"references\":[{\"type\":\"index-pattern\",\"id\":\"hello-world-index-pattern\",\"name\":\"indexpattern-datasource-current-indexpattern\"},{\"type\":\"index-pattern\",\"id\":\"hello-world-index-pattern\",\"name\":\"indexpattern-datasource-layer-adbd984e-7cd2-4067-a264-4e1e7a657afe\"}],\"state\":{\"visualization\":{\"shape\":\"pie\",\"layers\":[{\"layerId\":\"adbd984e-7cd2-4067-a264-4e1e7a657afe\",\"groups\":[\"92505ecf-b150-4f85-af5c-8c57683cf8a6\"],\"metric\":\"a8d3a439-7320-4a1b-b0e1-297efa97b3db\",\"numberDisplay\":\"percent\",\"categoryDisplay\":\"default\",\"legendDisplay\":\"default\",\"nestedLegend\":false,\"layerType\":\"data\"}]},\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filters\":[],\"datasourceStates\":{\"indexpattern\":{\"layers\":{\"adbd984e-7cd2-4067-a264-4e1e7a657afe\":{\"columns\":{\"a8d3a439-7320-4a1b-b0e1-297efa97b3db\":{\"label\":\"Count of records\",\"dataType\":\"number\",\"operationType\":\"count\",\"isBucketed\":false,\"scale\":\"ratio\",\"sourceField\":\"Records\"},\"92505ecf-b150-4f85-af5c-8c57683cf8a6\":{\"label\":\"Top values of http.status_code\",\"dataType\":\"number\",\"operationType\":\"terms\",\"scale\":\"ordinal\",\"sourceField\":\"http.status_code\",\"isBucketed\":true,\"params\":{\"size\":3,\"orderBy\":{\"type\":\"column\",\"columnId\":\"a8d3a439-7320-4a1b-b0e1-297efa97b3db\"},\"orderDirection\":\"desc\",\"otherBucket\":true,\"missingBucket\":false}}},\"columnOrder\":[\"92505ecf-b150-4f85-af5c-8c57683cf8a6\",\"a8d3a439-7320-4a1b-b0e1-297efa97b3db\"],\"incompleteColumns\":{}}}}}}},\"hidePanelTitles\":false,\"enhancements\":{}},\"title\":\"Http codes\"},{\"version\":\"7.17.6\",\"type\":\"visualization\",\"gridData\":{\"x\":13,\"y\":0,\"w\":35,\"h\":15,\"i\":\"21dea404-ae3c-4098-bd8c-ff57e645a1e2\"},\"panelIndex\":\"21dea404-ae3c-4098-bd8c-ff57e645a1e2\",\"embeddableConfig\":{\"hidePanelTitles\":false,\"enhancements\":{}},\"title\":\"Pass/Fail transactions\",\"panelRefName\":\"panel_21dea404-ae3c-4098-bd8c-ff57e645a1e2\"},{\"version\":\"7.17.6\",\"type\":\"search\",\"gridData\":{\"x\":0,\"y\":15,\"w\":48,\"h\":14,\"i\":\"3eebcc9d-9d87-4438-97d3-48a4d5a958e8\"},\"panelIndex\":\"3eebcc9d-9d87-4438-97d3-48a4d5a958e8\",\"embeddableConfig\":{\"hidePanelTitles\":false,\"enhancements\":{}},\"title\":\"Hello-World-Jassi\",\"panelRefName\":\"panel_3eebcc9d-9d87-4438-97d3-48a4d5a958e8\"}]",
+    "timeRestore": false,
+    "title": "HelloWorld-Jassi"
+  },
+  "id": "hello-world-dashboard",
+  "references": [
+    {
+      "id": "hello-world-index-pattern",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
+      "type": "index-pattern"
+    },
+    {
+      "id": "hello-world-index-pattern",
+      "name": "25e59ec8-eb7e-4fb7-beec-31eda6b8261c:indexpattern-datasource-current-indexpattern",
+      "type": "index-pattern"
+    },
+    {
+      "id": "hello-world-index-pattern",
+      "name": "25e59ec8-eb7e-4fb7-beec-31eda6b8261c:indexpattern-datasource-layer-adbd984e-7cd2-4067-a264-4e1e7a657afe",
+      "type": "index-pattern"
+    },
+    {
+      "id": "hello-world-visualization",
+      "name": "21dea404-ae3c-4098-bd8c-ff57e645a1e2:panel_21dea404-ae3c-4098-bd8c-ff57e645a1e2",
+      "type": "visualization"
+    },
+    {
+      "id": "hello-world-search",
+      "name": "3eebcc9d-9d87-4438-97d3-48a4d5a958e8:panel_3eebcc9d-9d87-4438-97d3-48a4d5a958e8",
+      "type": "search"
+    }
+  ],
+  "type": "dashboard"
+}

@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "description": "",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+    },
+    "title": "HelloWorld-PassFail-TimeSeries",
+    "uiStateJSON": "{}",
+    "version": 1,
+    "visState": "{\"title\":\"HelloWorld-PassFail-TimeSeries\",\"type\":\"metrics\",\"aggs\":[],\"params\":{\"time_range_mode\":\"entire_time_range\",\"id\":\"a0d8e4a5-7a4f-4bc8-aba6-cf958cc9231f\",\"type\":\"timeseries\",\"series\":[{\"time_range_mode\":\"entire_time_range\",\"id\":\"c6732342-5e8a-414d-b896-2ac78c53b4b2\",\"color\":\"#68BC00\",\"split_mode\":\"filter\",\"palette\":{\"type\":\"palette\",\"name\":\"default\"},\"metrics\":[{\"id\":\"426bc3e6-8cb9-4a44-be35-6a337a55ead6\",\"type\":\"count\"}],\"separate_axis\":0,\"axis_position\":\"right\",\"formatter\":\"default\",\"chart_type\":\"line\",\"line_width\":1,\"point_size\":1,\"fill\":0.5,\"stacked\":\"none\",\"override_index_pattern\":0,\"series_drop_last_bucket\":0,\"filter\":{\"query\":\"http.status_code < 400\",\"language\":\"kuery\"},\"label\":\"Pass\"},{\"id\":\"bdb125e0-5c17-11ed-a591-9958308e4999\",\"color\":\"rgba(247,6,6,1)\",\"split_mode\":\"filter\",\"palette\":{\"type\":\"palette\",\"name\":\"default\"},\"metrics\":[{\"id\":\"bdb125e1-5c17-11ed-a591-9958308e4999\",\"type\":\"count\"}],\"separate_axis\":0,\"axis_position\":\"right\",\"formatter\":\"default\",\"chart_type\":\"line\",\"line_width\":1,\"point_size\":1,\"fill\":0.5,\"stacked\":\"none\",\"override_index_pattern\":0,\"series_drop_last_bucket\":0,\"label\":\"Fail\",\"filter\":{\"query\":\"http.status_code >= 400\",\"language\":\"kuery\"}}],\"time_field\":\"\",\"index_pattern\":\"\",\"use_kibana_indexes\":true,\"interval\":\"\",\"axis_position\":\"left\",\"axis_formatter\":\"number\",\"axis_scale\":\"normal\",\"show_legend\":1,\"truncate_legend\":1,\"max_lines_legend\":1,\"show_grid\":1,\"tooltip_mode\":\"show_all\",\"drop_last_bucket\":0,\"background_color_rules\":[{\"id\":\"d91f1710-5c17-11ed-a591-9958308e4999\"}],\"bar_color_rules\":[{\"id\":\"db605480-5c17-11ed-a591-9958308e4999\"}],\"gauge_color_rules\":[{\"id\":\"dd439370-5c17-11ed-a591-9958308e4999\"}],\"gauge_width\":10,\"gauge_inner_width\":10,\"gauge_style\":\"half\"}}"
+  },
+  "id": "hello-world-visualization",
+  "type": "visualization"
+}

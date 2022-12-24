@@ -1,0 +1,7 @@
+- name: Play Web - Create env variable in hello world app
+  hosts: default
+  become: yes
+  remote_user: test
+  tasks:
+  - name: run command
+    ansible.builtin.command: hostname

@@ -1,0 +1,36 @@
+{
+    "attributes": {
+      "columns": [
+        "http.status_code",
+        "http.url",
+        "message"
+      ],
+      "description": "",
+      "grid": {},
+      "hideChart": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[{\"meta\":{\"alias\":null,\"negate\":false,\"disabled\":false,\"type\":\"phrase\",\"key\":\"type\",\"params\":{\"query\":\"applog\"},\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index\"},\"query\":{\"match_phrase\":{\"type\":\"applog\"}},\"$state\":{\"store\":\"appState\"}}],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      },
+      "sort": [
+        [
+          "@timestamp",
+          "desc"
+        ]
+      ],
+      "title": "Hello-World-Jassi"
+    },
+    "id": "hello-world-search",
+    "references": [
+      {
+        "id": "hello-world-index-pattern",
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern"
+      },
+      {
+        "id": "hello-world-index-pattern",
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
+        "type": "index-pattern"
+      }
+    ],
+    "type": "search"
+  }

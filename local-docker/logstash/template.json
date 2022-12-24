@@ -1,0 +1,19 @@
+{
+    "template": "filebeat",
+    "index_patterns": [
+        "filebeat-*"
+    ],
+    "settings": {
+        "number_of_shards": 2
+    },
+    "mappings": {
+        "properties": {
+            "@timestamp": {
+                "type": "date"
+            },
+            "type": {
+                "type": "keyword"
+            }
+        }
+    }
+}
