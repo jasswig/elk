@@ -1,0 +1,19 @@
+version: "3.4"
+services:
+  diagram:
+    container_name: diagram
+    image: diagram:1.0.0
+    build:
+      context: ./
+    volumes:
+    - ./draw:/wip
+    working_dir: /wip
+    command: >
+      sh -c
+        "python3 ./script.py"
+    networks:
+      - draw
+  
+networks:
+  draw:
+    driver: bridge

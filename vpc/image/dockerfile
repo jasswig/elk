@@ -1,0 +1,13 @@
+FROM fedora:38
+# Install graphviz
+RUN yum install graphviz -y
+# Install python 
+RUN dnf install python3
+# Install pip
+RUN yum install wget -y
+RUN wget https://bootstrap.pypa.io/get-pip.py
+RUN python3 get-pip.py
+# Install diagrams (https://diagrams.mingrammer.com/docs/getting-started/installation)
+RUN pip3 install diagrams
+RUN mkdir ~/wip/
+COPY ./draw ~/wip/
