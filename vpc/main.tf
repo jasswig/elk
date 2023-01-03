@@ -4,6 +4,10 @@ terraform {
       source = "hashicorp/aws"
       version = "4.45.0"
     }
+    elasticstack = {
+      source = "elastic/elasticstack"
+      version = "0.5.0"
+    }
   }
 }
 
